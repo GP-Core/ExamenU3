@@ -5,12 +5,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace ExamenU3
 {
     internal class Datos
     {
-        String cadenaConexion = "Data Source = GP;" + "integrated security=true; initial catalog=ExamenU3Tienda; encrypt=false";
+        String cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
         SqlConnection conexion;
 
         private SqlConnection abrirConexion()
