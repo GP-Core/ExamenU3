@@ -39,9 +39,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(241)))));
-            this.label1.Location = new System.Drawing.Point(143, 27);
+            this.label1.Location = new System.Drawing.Point(107, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(352, 51);
+            this.label1.Size = new System.Drawing.Size(276, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Brutal Bros Co.";
             // 
@@ -49,9 +50,10 @@
             // 
             this.btnProd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProd.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProd.Location = new System.Drawing.Point(260, 290);
+            this.btnProd.Location = new System.Drawing.Point(195, 236);
+            this.btnProd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProd.Name = "btnProd";
-            this.btnProd.Size = new System.Drawing.Size(119, 57);
+            this.btnProd.Size = new System.Drawing.Size(89, 46);
             this.btnProd.TabIndex = 1;
             this.btnProd.Text = "Mostrar Productos";
             this.btnProd.UseVisualStyleBackColor = true;
@@ -60,24 +62,27 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ExamenU3.Properties.Resources.prod;
-            this.pictureBox1.Location = new System.Drawing.Point(214, 92);
+            this.pictureBox1.Location = new System.Drawing.Point(160, 75);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(202, 178);
+            this.pictureBox1.Size = new System.Drawing.Size(152, 145);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(10)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(642, 376);
+            this.ClientSize = new System.Drawing.Size(482, 306);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnProd);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

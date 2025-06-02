@@ -55,14 +55,15 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAgregar, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvProductos, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 40);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 32);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.86441F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.13559F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 558);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(582, 453);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnImprimir
@@ -71,9 +72,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImprimir.Location = new System.Drawing.Point(3, 518);
+            this.btnImprimir.Location = new System.Drawing.Point(2, 420);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(770, 37);
+            this.btnImprimir.Size = new System.Drawing.Size(578, 31);
             this.btnImprimir.TabIndex = 3;
             this.btnImprimir.Text = "Imprimir Reporte";
             this.btnImprimir.UseVisualStyleBackColor = true;
@@ -85,9 +87,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.Location = new System.Drawing.Point(3, 475);
+            this.btnAgregar.Location = new System.Drawing.Point(2, 385);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(770, 37);
+            this.btnAgregar.Size = new System.Drawing.Size(578, 31);
             this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "Agregar Producto";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -100,12 +103,13 @@
             this.dgvProductos.ContextMenuStrip = this.contextMenuStrip;
             this.dgvProductos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(150)))), ((int)(((byte)(126)))));
-            this.dgvProductos.Location = new System.Drawing.Point(3, 59);
+            this.dgvProductos.Location = new System.Drawing.Point(2, 47);
+            this.dgvProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersWidth = 51;
             this.dgvProductos.RowTemplate.Height = 24;
-            this.dgvProductos.Size = new System.Drawing.Size(770, 410);
+            this.dgvProductos.Size = new System.Drawing.Size(578, 334);
             this.dgvProductos.TabIndex = 2;
             // 
             // contextMenuStrip
@@ -115,19 +119,19 @@
             this.editarToolStripMenuItem,
             this.borrarToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(120, 52);
+            this.contextMenuStrip.Size = new System.Drawing.Size(107, 48);
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.editarToolStripMenuItem.Text = "Editar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // borrarToolStripMenuItem
             // 
             this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
-            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.borrarToolStripMenuItem.Text = "Borrar";
             this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
             // 
@@ -138,11 +142,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.77922F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtBusqueda, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(770, 50);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(578, 41);
             this.tableLayoutPanel2.TabIndex = 4;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
@@ -154,9 +159,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Georgia", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(241)))));
-            this.label1.Location = new System.Drawing.Point(305, 0);
+            this.label1.Location = new System.Drawing.Point(228, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(462, 50);
+            this.label1.Size = new System.Drawing.Size(348, 41);
             this.label1.TabIndex = 1;
             this.label1.Text = "PRODUCTOS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,17 +172,19 @@
             this.txtBusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBusqueda.Location = new System.Drawing.Point(3, 3);
+            this.txtBusqueda.Location = new System.Drawing.Point(2, 2);
+            this.txtBusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(296, 22);
+            this.txtBusqueda.Size = new System.Drawing.Size(222, 20);
             this.txtBusqueda.TabIndex = 2;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(60, 13);
+            this.label2.Location = new System.Drawing.Point(45, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "label2";
             // 
@@ -185,21 +193,23 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Coral;
-            this.label3.Location = new System.Drawing.Point(16, 18);
+            this.label3.Location = new System.Drawing.Point(12, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 16);
+            this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Buscar Producto:";
             // 
             // frmProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(10)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(800, 612);
+            this.ClientSize = new System.Drawing.Size(600, 497);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmProductos";
             this.Text = "Productos";
             this.Activated += new System.EventHandler(this.frmProductos_Activated);

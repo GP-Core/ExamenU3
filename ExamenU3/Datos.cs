@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Configuration;
+using WebSocketSharp;
+using System.Net.WebSockets;
 
 namespace ExamenU3
 {
@@ -14,37 +12,37 @@ namespace ExamenU3
         String cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
         SqlConnection conexion;
 
+        // Cliente WebSocket para notificar cambios
+        private WebSocket ws;
+
+        public Datos()
+        {
+            try
+            {
+                ws = new WebSocket("ws://192.168.100.55:8080/notify"); // Cambia por la IP del servidor
+                ws.Connect();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No se pudo conectar al WebSocket para notificaciones: " + ex.Message);
+            }
+        }
+
         private SqlConnection abrirConexion()
         {
             try
             {
                 conexion = new SqlConnection(cadenaConexion);
-                conexion.Open(); // abrir conexion a bd
+                conexion.Open();
                 return conexion;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Eror al abrir conexion: " + ex.Message);
+                Console.WriteLine("Error al abrir conexion: " + ex.Message);
                 return null;
             }
         }
 
-        public bool prueba()
-        {
-            try
-            {
-                abrirConexion();
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Eror al abrir conexion: " + ex.Message);
-                return false;
-            }
-
-        }
-        //el dataset ayuda a taer informacion de la 
         public DataSet consulta(string consulta)
         {
             try
@@ -52,7 +50,6 @@ namespace ExamenU3
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(consulta, abrirConexion());
                 da.Fill(ds);
-
                 return ds;
             }
             catch (Exception ex)
@@ -61,12 +58,20 @@ namespace ExamenU3
                 return null;
             }
         }
+
         public bool ejecutarComando(string cmdText)
         {
             try
             {
                 SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
                 comando.ExecuteNonQuery();
+
+                // Notificar al servidor que la BD cambió
+                if (ws != null && ws.IsAlive)
+                {
+                    ws.Send("REFRESH");
+                }
+
                 return true;
             }
             catch (Exception ex)

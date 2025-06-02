@@ -1,87 +1,124 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.WebSockets;
 using System.Windows.Forms;
+using WebSocketSharp;
 
 namespace ExamenU3
 {
-    public partial class frmAgregar : Form
+    public partial class frmProductos : Form
     {
         Datos datos = new Datos();
-        int id = 0;
-        bool bandera = false;
-        public frmAgregar()
+        WebSocket ws;
+
+        public frmProductos()
         {
             InitializeComponent();
-        }
-        public frmAgregar(int id, string nombre, string precio, string descripcion, int inventario)
-        {
-            InitializeComponent();
-            this.id = id;
-            txtId.Text = id.ToString();
-            txtNombre.Text = nombre;
-            txtPrecio.Text = precio;
-            rtbDesc.Text = descripcion;
-            txtInventario.Text = inventario.ToString();
-            bandera = true;
-            this.Text = "Editar Producto";  
-            lblTitulo.Text = "Editar Producto"; // Cambia el texto del label
-            btnAgregar.Text = "Editar Producto"; // Cambia el texto del botón
+
+            // Conectamos al servidor WebSocket para recibir notificaciones
+            ws = new WebSocket("ws://192.168.100.55:8080/notify"); // Cambia por IP/puerto correcto
+
+            ws.OnMessage += (sender, e) =>
+            {
+                if (e.Data == "REFRESH")
+                {
+                    // Invocamos en el hilo UI para evitar problemas con el hilo principal
+                    this.Invoke(new Action(() =>
+                    {
+                        cargarTabla();
+                        MessageBox.Show("Datos actualizados en vivo.");
+                    }));
+                }
+            };
+
+            ws.Connect();
         }
 
-
-        private void agregarProd()
+        private void cargarTabla()
         {
-            string sql = "Insert into Productos (Nombre,Precio,Descripcion,Stock) Values ('" + txtNombre.Text + "'," +
-                ""+txtPrecio.Text+",'"+rtbDesc.Text+"',"+txtInventario.Text+")";
-            bool v = datos.ejecutarComando(sql);
-            if (v)
+            DataSet ds = new DataSet();
+            ds = datos.consulta("select * from Productos");
+            if (ds != null)
             {
-                MessageBox.Show("Producto Agregado");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Error al agregar producto");
+                dgvProductos.DataSource = ds.Tables[0];
+                dgvProductos.Columns[0].HeaderText = "ID Producto";
+                dgvProductos.Columns[1].HeaderText = "Nombre";
+                dgvProductos.Columns[2].HeaderText = "Precio";
+                dgvProductos.Columns[3].HeaderText = "Descripción";
+                dgvProductos.Columns[4].HeaderText = "Inventario";
             }
         }
-        private void editarProd()
-        {
-            string sql = "Update Productos set Nombre='" + txtNombre.Text + "',Precio=" + txtPrecio.Text+
-                ",Descripcion='" + rtbDesc.Text + "',Stock=" + txtInventario.Text + " where IdProducto=" + id;
-            bool v = datos.ejecutarComando(sql);
-            if (v)
-            {
-                MessageBox.Show("Producto Editado");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Error al editar producto");
-            }
 
-        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (bandera)
+            frmAgregar agregar = new frmAgregar();
+            agregar.Show();
+        }
+
+        private void frmProductos_Load(object sender, EventArgs e)
+        {
+            cargarTabla();
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int i = dgvProductos.CurrentRow.Index;
+            int id = Int32.Parse(dgvProductos.Rows[i].Cells[0].Value.ToString());
+            string nombre = dgvProductos.Rows[i].Cells[1].Value.ToString();
+            double precio = Double.Parse(dgvProductos.Rows[i].Cells[2].Value.ToString());
+            string descripcion = dgvProductos.Rows[i].Cells[3].Value.ToString();
+            int inventario = Int32.Parse(dgvProductos.Rows[i].Cells[4].Value.ToString());
+            frmAgregar agregar = new frmAgregar(id, nombre, precio.ToString(), descripcion, inventario);
+            agregar.Show();
+        }
+
+        private void frmProductos_Activated(object sender, EventArgs e)
+        {
+            cargarTabla();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            frmImprimir imprimir = new frmImprimir();
+            imprimir.Show();
+        }
+
+        private void borrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int i = dgvProductos.CurrentRow.Index;
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto?" + dgvProductos.Rows[i].Cells[1].Value, "Eliminar Producto", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                editarProd();
+                string sql = "Delete from Productos where IdProducto=" + dgvProductos.Rows[i].Cells[0].Value;
+                bool v = datos.ejecutarComando(sql);
+                if (v)
+                {
+                    MessageBox.Show("Producto Eliminado");
+                    cargarTabla();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar producto");
+                }
             }
             else
             {
-                agregarProd();
+                MessageBox.Show("Eliminación cancelada");
             }
-
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            this.Close();
+            DataSet ds = datos.consulta("select * from Productos where Nombre like '%" + txtBusqueda.Text + "%'");
+            if (ds != null)
+            {
+                dgvProductos.DataSource = ds.Tables[0];
+                dgvProductos.Columns[0].HeaderText = "ID Producto";
+                dgvProductos.Columns[1].HeaderText = "Nombre";
+                dgvProductos.Columns[2].HeaderText = "Precio";
+                dgvProductos.Columns[3].HeaderText = "Descripción";
+                dgvProductos.Columns[4].HeaderText = "Inventario";
+            }
         }
     }
 }
