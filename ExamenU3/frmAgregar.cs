@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebSocketSharp;
 
 namespace ExamenU3
 {
@@ -34,6 +35,23 @@ namespace ExamenU3
             btnAgregar.Text = "Editar Producto"; // Cambia el texto del botón
         }
 
+        //private void notificarCambio()
+        //{
+        //    try
+        //    {
+        //        using (WebSocket ws = new WebSocket("ws://192.168.100.55:8080/notify")) // IP del servidor
+        //        {
+        //            ws.Connect();
+        //            ws.Send("actualizar"); // Mensaje simple que los clientes interpretarán
+        //            ws.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error al enviar notificación WebSocket: " + ex.Message);
+        //    }
+        //}
+
 
         private void agregarProd()
         {
@@ -43,6 +61,7 @@ namespace ExamenU3
             if (v)
             {
                 MessageBox.Show("Producto Agregado");
+                WebSocketClient.EnviarMensaje("REFRESH");
                 this.Close();
             }
             else
@@ -58,6 +77,7 @@ namespace ExamenU3
             if (v)
             {
                 MessageBox.Show("Producto Editado");
+                WebSocketClient.EnviarMensaje("REFRESH");
                 this.Close();
             }
             else

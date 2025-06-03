@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using WebSocketSharp;
 
 namespace ExamenU3
 {
@@ -13,6 +14,7 @@ namespace ExamenU3
     {
         String cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
         SqlConnection conexion;
+        WebSocket ws;
 
         private SqlConnection abrirConexion()
         {
@@ -61,12 +63,46 @@ namespace ExamenU3
                 return null;
             }
         }
+        //public bool ejecutarComando(string cmdText)
+        //{
+        //    try
+        //    {
+        //        SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
+        //        comando.ExecuteNonQuery();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //        return false;
+        //    }
+        //}
+        public Datos()
+        {
+            try
+            {
+                ws = new WebSocket("ws://192.168.100.55:8080/notify"); // Cambia por la IP del servidor
+                ws.Connect();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No se pudo conectar al WebSocket para notificaciones: " + ex.Message);
+            }
+        }
+
         public bool ejecutarComando(string cmdText)
         {
             try
             {
                 SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
                 comando.ExecuteNonQuery();
+
+                // Notificar al servidor que la BD cambió
+                if (ws.IsAlive)
+                {
+                    ws.Send("REFRESH");
+                }
+
                 return true;
             }
             catch (Exception ex)

@@ -7,15 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebSocketSharp;
 
 namespace ExamenU3
 {
     public partial class frmProductos : Form
     {
         Datos datos = new Datos();
+        WebSocket ws;
         public frmProductos()
         {
             InitializeComponent();
+
+            WebSocketClient.Inicializar("ws://192.168.100.55:8080/notify"); // IP del servidor WebSocket
+
+            WebSocketClient.ws.OnMessage += (sender, e) =>
+            {
+                if (e.Data == "REFRESH")
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        cargarTabla();
+                    }));
+                }
+            };
         }
         private void cargarTabla()
         {
@@ -106,6 +121,11 @@ namespace ExamenU3
                 dgvProductos.Columns[3].HeaderText = "Descripción";
                 dgvProductos.Columns[4].HeaderText = "Inventario";
             }
+        }
+
+        private void frmProductos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            WebSocketClient.Cerrar();
         }
     }
 }
