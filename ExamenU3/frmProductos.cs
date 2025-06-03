@@ -19,7 +19,7 @@ namespace ExamenU3
         {
             InitializeComponent();
 
-            WebSocketClient.Inicializar("ws://192.168.140.142:8080/notify"); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://10.13.54.121:8080/notify"); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {
