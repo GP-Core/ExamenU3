@@ -72,7 +72,7 @@ namespace ExamenU3
         private void editarProd()
         {
 
-            // 1. Verificar si el producto todavía existe
+            // Verificar si el producto todavía existe
             string checkSql = $"SELECT COUNT(*) FROM Productos WHERE IdProducto = {id}";
             DataSet ds = datos.consulta(checkSql);
 

@@ -19,7 +19,7 @@ namespace ExamenU3
         {
             InitializeComponent();
 
-            WebSocketClient.Inicializar("ws://192.168.100.55:8080/notify"); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://192.168.140.142:8080/notify"); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {
@@ -84,7 +84,7 @@ namespace ExamenU3
         private void borrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int i = dgvProductos.CurrentRow.Index;
-            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto?" + dgvProductos.Rows[i].Cells[1].Value, "Eliminar Producto", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto '" + dgvProductos.Rows[i].Cells[1].Value + "'?", "Eliminar Producto", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 string sql = "Delete from Productos where IdProducto=" + dgvProductos.Rows[i].Cells[0].Value;
