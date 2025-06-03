@@ -15,11 +15,13 @@ namespace ExamenU3
     {
         Datos datos = new Datos();
         WebSocket ws;
-        public frmProductos()
+        string usuario;
+        public frmProductos(string usuario)
         {
             InitializeComponent();
+            this.usuario = usuario;
 
-            WebSocketClient.Inicializar("ws://10.13.54.121:8080/notify"); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://10.13.54.121:8080/notify", usuario); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {

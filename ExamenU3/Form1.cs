@@ -19,8 +19,8 @@ namespace ExamenU3
 
         private void btnProd_Click(object sender, EventArgs e)
         {
-            frmProductos productos = new frmProductos();
-            productos.Show();
+            //frmProductos productos = new frmProductos();
+            //productos.Show();
         }
     }
 }
