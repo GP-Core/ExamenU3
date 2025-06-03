@@ -28,6 +28,7 @@ namespace ExamenU3
                     this.Invoke(new Action(() =>
                     {
                         cargarTabla();
+                        MessageBox.Show("Los productos han sido actualizados por otro usuario.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
                 }
             };

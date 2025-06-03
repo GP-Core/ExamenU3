@@ -71,6 +71,18 @@ namespace ExamenU3
         }
         private void editarProd()
         {
+
+            // 1. Verificar si el producto todavía existe
+            string checkSql = $"SELECT COUNT(*) FROM Productos WHERE IdProducto = {id}";
+            DataSet ds = datos.consulta(checkSql);
+
+            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0 || ds.Tables[0].Rows[0][0].ToString() == "0")
+            {
+                MessageBox.Show("Este producto ya no existe. Otro usuario pudo haberlo eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close(); // Cierra el formulario 
+                return;
+            }
+
             string sql = "Update Productos set Nombre='" + txtNombre.Text + "',Precio=" + txtPrecio.Text+
                 ",Descripcion='" + rtbDesc.Text + "',Stock=" + txtInventario.Text + " where IdProducto=" + id;
             bool v = datos.ejecutarComando(sql);
