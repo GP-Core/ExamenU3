@@ -203,9 +203,9 @@
             // 
             // rtbHistorial
             // 
-            this.rtbHistorial.Location = new System.Drawing.Point(625, 159);
+            this.rtbHistorial.Location = new System.Drawing.Point(625, 79);
             this.rtbHistorial.Name = "rtbHistorial";
-            this.rtbHistorial.Size = new System.Drawing.Size(191, 155);
+            this.rtbHistorial.Size = new System.Drawing.Size(191, 334);
             this.rtbHistorial.TabIndex = 2;
             this.rtbHistorial.Text = "";
             // 

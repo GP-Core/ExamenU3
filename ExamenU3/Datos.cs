@@ -26,7 +26,7 @@ namespace ExamenU3
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Eror al abrir conexion: " + ex.Message);
+                Console.WriteLine("Error al abrir conexion: " + ex.Message);
                 return null;
             }
         }
@@ -41,7 +41,7 @@ namespace ExamenU3
             catch (Exception ex)
             {
 
-                Console.WriteLine("Eror al abrir conexion: " + ex.Message);
+                Console.WriteLine("Error al abrir conexion: " + ex.Message);
                 return false;
             }
 
@@ -121,7 +121,7 @@ namespace ExamenU3
 
                 if (!string.IsNullOrEmpty(accion) && !string.IsNullOrEmpty(nombreProducto))
                 {
-                    // Envía la acción + producto + nombre usuario (que debes obtener desde WebSocketClient)
+                    // Envía la acción + producto + nombre usuario 
                     WebSocketClient.EnviarMensaje($"{accion}:{nombreProducto}");
                 }
                 else
