@@ -61,7 +61,7 @@ namespace ExamenU3
             if (v)
             {
                 MessageBox.Show("Producto Agregado");
-                WebSocketClient.EnviarMensaje("REFRESH");
+                bool v1 = datos.ejecutarComando(sql, "AGREGAR", txtNombre.Text);
                 this.Close();
             }
             else
@@ -89,7 +89,7 @@ namespace ExamenU3
             if (v)
             {
                 MessageBox.Show("Producto Editado");
-                WebSocketClient.EnviarMensaje("REFRESH");
+                bool v1 = datos.ejecutarComando(sql, "EDITAR", txtNombre.Text);
                 this.Close();
             }
             else

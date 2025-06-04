@@ -14,25 +14,59 @@ namespace ExamenU3
     public partial class frmProductos : Form
     {
         Datos datos = new Datos();
-        WebSocket ws;
+        //WebSocket ws;
         string usuario;
         public frmProductos(string usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
 
-            WebSocketClient.Inicializar("ws://10.13.54.121:8080/notify", usuario); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://192.168.100.55:8080/notify", usuario); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {
-                if (e.Data == "REFRESH")
-                {
+
                     this.Invoke(new Action(() =>
                     {
-                        cargarTabla();
-                        MessageBox.Show("Los productos han sido actualizados por otro usuario.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //cargarTabla();
+                        //MessageBox.Show("Los productos han sido actualizados por otro usuario.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (!string.IsNullOrWhiteSpace(e.Data))
+                        {
+                            string[] partes = e.Data.Split(':');
+                            if (partes.Length >= 3)
+                            {
+                                string accion = partes[0];
+                                string nombreProducto = partes[1];
+                                string usuario1 = partes[2];
+
+                                string mensaje;
+
+                                switch (accion.ToUpper())
+                                {
+                                    case "AGREGAR":
+                                        mensaje = $"[{usuario}] ha agregado el producto '{nombreProducto}'.";
+                                        break;
+                                    case "EDITAR":
+                                        mensaje = $"[{usuario}] ha editado el producto '{nombreProducto}'.";
+                                        break;
+                                    case "ELIMINAR":
+                                        mensaje = $"[{usuario}] ha eliminado el producto '{nombreProducto}' del registro.";
+                                        break;
+                                    default:
+                                        mensaje = $"[{usuario}] ha hecho un cambio en el producto '{nombreProducto}'.";
+                                        break;
+                                }
+
+                                // Actualiza la tabla
+                                cargarTabla();
+
+                                // En lugar de MessageBox, agregamos al RichTextBox (supongamos que se llama rtbNotificaciones)
+                                rtbHistorial.AppendText(mensaje + Environment.NewLine);
+                            }
+                        }
                     }));
-                }
+                
             };
         }
         private void cargarTabla()
@@ -89,11 +123,13 @@ namespace ExamenU3
             DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto '" + dgvProductos.Rows[i].Cells[1].Value + "'?", "Eliminar Producto", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                string nombreProd = dgvProductos.Rows[i].Cells[1].Value.ToString();
                 string sql = "Delete from Productos where IdProducto=" + dgvProductos.Rows[i].Cells[0].Value;
                 bool v = datos.ejecutarComando(sql);
                 if (v)
                 {
                     MessageBox.Show("Producto Eliminado");
+                    bool v1 = datos.ejecutarComando(sql, "ELIMINAR", nombreProd);
                     cargarTabla();
                 }
                 else

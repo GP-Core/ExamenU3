@@ -41,6 +41,7 @@
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.rtbHistorial = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -200,12 +201,21 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Buscar Producto:";
             // 
+            // rtbHistorial
+            // 
+            this.rtbHistorial.Location = new System.Drawing.Point(625, 159);
+            this.rtbHistorial.Name = "rtbHistorial";
+            this.rtbHistorial.Size = new System.Drawing.Size(191, 155);
+            this.rtbHistorial.TabIndex = 2;
+            this.rtbHistorial.Text = "";
+            // 
             // frmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(10)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(600, 497);
+            this.ClientSize = new System.Drawing.Size(855, 497);
+            this.Controls.Add(this.rtbHistorial);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -239,5 +249,6 @@
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox rtbHistorial;
     }
 }

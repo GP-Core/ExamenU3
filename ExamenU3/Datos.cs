@@ -90,19 +90,44 @@ namespace ExamenU3
             }
         }
 
-        public bool ejecutarComando(string cmdText)
+        //public bool ejecutarComando(string cmdText)
+        //{
+        //    try
+        //    {
+        //        SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
+        //        comando.ExecuteNonQuery();
+
+        //        // Notificar al servidor que la BD cambió
+        //        if (ws.IsAlive)
+        //        {
+        //            ws.Send("REFRESH");
+        //        }
+
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //        return false;
+        //    }
+        //}
+
+        public bool ejecutarComando(string cmdText, string accion = "REFRESH", string nombreProducto = "")
         {
             try
             {
                 SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
                 comando.ExecuteNonQuery();
 
-                // Notificar al servidor que la BD cambió
-                if (ws.IsAlive)
+                if (!string.IsNullOrEmpty(accion) && !string.IsNullOrEmpty(nombreProducto))
                 {
-                    ws.Send("REFRESH");
+                    // Envía la acción + producto + nombre usuario (que debes obtener desde WebSocketClient)
+                    WebSocketClient.EnviarMensaje($"{accion}:{nombreProducto}");
                 }
-
+                else
+                {
+                    WebSocketClient.EnviarMensaje("REFRESH");
+                }
                 return true;
             }
             catch (Exception ex)
@@ -111,5 +136,7 @@ namespace ExamenU3
                 return false;
             }
         }
+
+
     }
 }

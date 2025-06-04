@@ -40,13 +40,24 @@ namespace ExamenU3
             }
         }
 
+        //public static void EnviarMensaje(string mensaje)
+        //{
+        //    if (ws != null && ws.IsAlive)
+        //    {
+        //        ws.Send(mensaje + ":" + NombreUsuarioActual);
+        //    }
+        //}
+
+
         public static void EnviarMensaje(string mensaje)
         {
             if (ws != null && ws.IsAlive)
             {
+                // Se añade ":NombreUsuarioActual" al final para identificar quién hizo el cambio
                 ws.Send(mensaje + ":" + NombreUsuarioActual);
             }
         }
+
 
         public static void Cerrar()
         {
