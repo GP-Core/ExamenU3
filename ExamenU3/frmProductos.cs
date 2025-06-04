@@ -45,16 +45,16 @@ namespace ExamenU3
                                 switch (accion.ToUpper())
                                 {
                                     case "AGREGAR":
-                                        mensaje = $"[{usuario}] ha agregado el producto '{nombreProducto}'.";
+                                        mensaje = $"[{usuario1}] ha agregado el producto '{nombreProducto}'.";
                                         break;
                                     case "EDITAR":
-                                        mensaje = $"[{usuario}] ha editado el producto '{nombreProducto}'.";
+                                        mensaje = $"[{usuario1}] ha editado el producto '{nombreProducto}'.";
                                         break;
                                     case "ELIMINAR":
-                                        mensaje = $"[{usuario}] ha eliminado el producto '{nombreProducto}' del registro.";
+                                        mensaje = $"[{usuario1}] ha eliminado el producto '{nombreProducto}' del registro.";
                                         break;
                                     default:
-                                        mensaje = $"[{usuario}] ha hecho un cambio en el producto '{nombreProducto}'.";
+                                        mensaje = $"[{usuario1}] ha hecho un cambio en el producto '{nombreProducto}'.";
                                         break;
                                 }
 
@@ -62,7 +62,7 @@ namespace ExamenU3
                                 cargarTabla();
 
                                 // En lugar de MessageBox, agregamos al RichTextBox (supongamos que se llama rtbNotificaciones)
-                                rtbHistorial.AppendText(mensaje + Environment.NewLine);
+                                rtbHistorial.AppendText(mensaje + Environment.NewLine + Environment.NewLine);
                             }
                         }
                     }));
