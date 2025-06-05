@@ -14,7 +14,6 @@ namespace ExamenU3
     public partial class frmProductos : Form
     {
         Datos datos = new Datos();
-        //WebSocket ws;
         string usuario;
         public frmProductos(string usuario)
         {
@@ -29,8 +28,6 @@ namespace ExamenU3
 
                     this.Invoke(new Action(() =>
                     {
-                        //cargarTabla();
-                        //MessageBox.Show("Los productos han sido actualizados por otro usuario.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         if (!string.IsNullOrWhiteSpace(e.Data))
                         {
@@ -62,7 +59,7 @@ namespace ExamenU3
                                 // Actualiza la tabla
                                 cargarTabla();
 
-                                // En lugar de MessageBox, agregamos al RichTextBox (supongamos que se llama rtbNotificaciones)
+                                //Enviamos notificacion al historial de cambios
                                 rtbHistorial.AppendText(mensaje + Environment.NewLine + Environment.NewLine);
                             }
                         }
@@ -130,7 +127,7 @@ namespace ExamenU3
                 if (v)
                 {
                     MessageBox.Show("Producto Eliminado");
-                    bool v1 = datos.ejecutarComando("ELIMINAR", nombreProd);
+                    bool v1 = datos.ejecutarMensaje("ELIMINAR", nombreProd);
                     cargarTabla();
                 }
                 else

@@ -12,23 +12,6 @@ namespace ExamenU3
         public static WebSocket ws;
         public static string NombreUsuarioActual = ""; // Identificador del usuario actual
 
-        //public static void Inicializar(string url)
-        //{
-        //    if (ws == null)
-        //    {
-        //        ws = new WebSocket(url);
-        //        ws.Connect();
-        //    }
-        //}
-
-        //public static void EnviarMensaje(string mensaje)
-        //{
-        //    if (ws != null && ws.IsAlive)
-        //    {
-        //        ws.Send(mensaje);
-        //    }
-        //}
-
         public static void Inicializar(string url, string nombreUsuario)
         {
             NombreUsuarioActual = nombreUsuario;
@@ -40,15 +23,6 @@ namespace ExamenU3
             }
         }
 
-        //public static void EnviarMensaje(string mensaje)
-        //{
-        //    if (ws != null && ws.IsAlive)
-        //    {
-        //        ws.Send(mensaje + ":" + NombreUsuarioActual);
-        //    }
-        //}
-
-
         public static void EnviarMensaje(string mensaje)
         {
             if (ws != null && ws.IsAlive)
@@ -57,7 +31,6 @@ namespace ExamenU3
                 ws.Send(mensaje + ":" + NombreUsuarioActual);
             }
         }
-
 
         public static void Cerrar()
         {

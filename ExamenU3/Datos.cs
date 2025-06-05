@@ -46,7 +46,7 @@ namespace ExamenU3
             }
 
         }
-        //el dataset ayuda a taer informacion de la 
+
         public DataSet consulta(string consulta)
         {
             try
@@ -63,20 +63,7 @@ namespace ExamenU3
                 return null;
             }
         }
-        //public bool ejecutarComando(string cmdText)
-        //{
-        //    try
-        //    {
-        //        SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
-        //        comando.ExecuteNonQuery();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //        return false;
-        //    }
-        //}
+
         public Datos()
         {
             try
@@ -106,12 +93,10 @@ namespace ExamenU3
             }
         }
 
-        public bool ejecutarComando(string accion = "REFRESH", string nombreProducto = "")
+        public bool ejecutarMensaje(string accion, string nombreProducto)
         {
             try
             {
-                //SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
-                //comando.ExecuteNonQuery();
 
                 if (!string.IsNullOrEmpty(accion) && !string.IsNullOrEmpty(nombreProducto))
                 {
