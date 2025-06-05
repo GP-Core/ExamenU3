@@ -90,34 +90,28 @@ namespace ExamenU3
             }
         }
 
-        //public bool ejecutarComando(string cmdText)
-        //{
-        //    try
-        //    {
-        //        SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
-        //        comando.ExecuteNonQuery();
-
-        //        // Notificar al servidor que la BD cambió
-        //        if (ws.IsAlive)
-        //        {
-        //            ws.Send("REFRESH");
-        //        }
-
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //        return false;
-        //    }
-        //}
-
-        public bool ejecutarComando(string cmdText, string accion = "REFRESH", string nombreProducto = "")
+        public bool ejecutarComando(string cmdText)
         {
             try
             {
                 SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
                 comando.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        public bool ejecutarComando(string accion = "REFRESH", string nombreProducto = "")
+        {
+            try
+            {
+                //SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
+                //comando.ExecuteNonQuery();
 
                 if (!string.IsNullOrEmpty(accion) && !string.IsNullOrEmpty(nombreProducto))
                 {
